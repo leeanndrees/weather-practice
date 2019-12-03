@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CurrentWeatherViewController: UIViewController {
 
+    @IBOutlet var tempLabel: UILabel!
+    @IBOutlet var descLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
