@@ -16,6 +16,12 @@ class CurrentWeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        WeatherNetworking.getWeather(success: { (response) in
+            print(response)
+        }) { (error) in
+            print(error)
+        }
     }
 
 
