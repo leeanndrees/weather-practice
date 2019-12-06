@@ -9,13 +9,15 @@
 import Foundation
 
 final class WeatherNetworking {
-    static let weatherSession = URLSession(configuration: .default)
-    static var dataTask: URLSessionDataTask?
-    static let baseURL = "https://api.openweathermap.org/data/2.5/weather"
-    static let key = <#String#>
+    let weatherSession = URLSession(configuration: .default)
+    var dataTask: URLSessionDataTask?
+    let baseURL = "https://api.openweathermap.org/data/2.5/weather"
+    let key =  <#String #>
     
-    static public func getWeather(for latitude: Double = 35,
-                           longitude: Double = 139,
+    static let shared = WeatherNetworking()
+    
+    public func getWeather(for latitude: Double,
+                           longitude: Double,
                            success: @escaping (CurrentWeatherResponse) -> Void,
                            failure: @escaping (Error) -> Void) {
 //        dataTask?.cancel()
@@ -27,26 +29,31 @@ final class WeatherNetworking {
 //            defer { self.dataTask = nil }
             
             if let error = error {
-                print(error.localizedDescription)
                 failure(error)
             } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                guard let convertedData = self.converted(from: data) else { return }
-                success(convertedData)
+                
+                switch self.converted(from: data) {
+                case .success(let response):
+                    success(response)
+                case .failure(let error):
+                    failure(error)
+                case .none:
+                    print("oh no")
+                }
             }
         }
         
         dataTask?.resume()
     }
     
-    static private func converted(from data: Data) -> CurrentWeatherResponse? {
+    private func converted(from data: Data) -> Result<CurrentWeatherResponse, Error>? {
         let decoder = JSONDecoder()
         
         do {
             let response = try decoder.decode(CurrentWeatherResponse.self, from: data)
-            return response
+            return .success(response)
         } catch {
-            print("decoding failed")
-            return nil
+            return .failure(error)
         }
     }
 }

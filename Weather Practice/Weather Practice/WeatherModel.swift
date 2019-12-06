@@ -17,6 +17,6 @@ struct CurrentWeatherResponse: Decodable {
     }
     
     struct Main: Decodable {
-        let temp: Decimal
+        let temp: Double
     }
 }
