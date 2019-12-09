@@ -6,6 +6,7 @@
 //  Copyright © 2019 DetroitLabs. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
 
 class CurrentWeatherViewController: UIViewController {
@@ -13,14 +14,21 @@ class CurrentWeatherViewController: UIViewController {
     @IBOutlet var tempLabel: UILabel!
     @IBOutlet var descLabel: UILabel!
     
+    var location: CLLocation?
+    lazy var viewModel = CurrentWeatherViewModel(delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let viewModel = CurrentWeatherViewModel(delegate: self)
-        viewModel.getWeather(for: 42.0, longitude: 16.0)
+        setupLocationManager()
     }
 
+    private func setupLocationManager() {
+        let locationManager = LocationManager.shared
+        locationManager.delegate = self
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
 }
 
 extension CurrentWeatherViewController: CurrentWeatherViewDelegate {
@@ -42,3 +50,16 @@ extension CurrentWeatherViewController: CurrentWeatherViewDelegate {
     }
 }
 
+extension CurrentWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        viewModel.getWeather(for: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let alert = UIAlertController(title: "Failed to get Location", message: error.localizedDescription, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}

@@ -6,4 +6,9 @@
 //  Copyright © 2019 DetroitLabs. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
+
+class LocationManager {
+    static let shared = CLLocationManager()
+}

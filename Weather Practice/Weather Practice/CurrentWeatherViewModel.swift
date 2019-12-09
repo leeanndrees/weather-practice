@@ -6,6 +6,7 @@
 //  Copyright © 2019 DetroitLabs. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 
 protocol CurrentWeatherViewDelegate: AnyObject {
@@ -13,7 +14,7 @@ protocol CurrentWeatherViewDelegate: AnyObject {
     func didFailToGetWeatherData(errorDescription: String)
 }
 
-final class CurrentWeatherViewModel {
+class CurrentWeatherViewModel {
     weak var delegate: CurrentWeatherViewDelegate?
     let networking: WeatherNetworking
     
@@ -24,7 +25,8 @@ final class CurrentWeatherViewModel {
     
     func getWeather(for latitude: Double, longitude: Double) {
         networking.getWeather(for: latitude, longitude: longitude, success: { (response) in
-            let temp = String(response.main.temp)
+            let tempString = String(format: "%.0f", response.main.temp)
+            let temp = "\(tempString)ºF"
             let desc = response.weather[0].description
             self.delegate?.didGetWeatherData(temp: temp, desc: desc)
         }) { (error) in

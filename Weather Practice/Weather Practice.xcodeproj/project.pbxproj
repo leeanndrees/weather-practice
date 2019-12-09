@@ -17,6 +17,7 @@
 		435A0B2C239727B000EF5782 /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435A0B2B239727B000EF5782 /* CurrentWeatherViewModel.swift */; };
 		435A0B2E2397283F00EF5782 /* WeatherNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435A0B2D2397283F00EF5782 /* WeatherNetworking.swift */; };
 		435A0B302397287B00EF5782 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435A0B2F2397287B00EF5782 /* WeatherModel.swift */; };
+		435A0B322399A52000EF5782 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435A0B312399A52000EF5782 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		435A0B2B239727B000EF5782 /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
 		435A0B2D2397283F00EF5782 /* WeatherNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworking.swift; sourceTree = "<group>"; };
 		435A0B2F2397287B00EF5782 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		435A0B312399A52000EF5782 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				435A0B172397249600EF5782 /* Info.plist */,
 				435A0B2D2397283F00EF5782 /* WeatherNetworking.swift */,
 				435A0B2F2397287B00EF5782 /* WeatherModel.swift */,
+				435A0B312399A52000EF5782 /* LocationManager.swift */,
 			);
 			path = "Weather Practice";
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				435A0B0E2397249300EF5782 /* CurrentWeatherViewController.swift in Sources */,
 				435A0B0A2397249300EF5782 /* AppDelegate.swift in Sources */,
 				435A0B0C2397249300EF5782 /* SceneDelegate.swift in Sources */,
+				435A0B322399A52000EF5782 /* LocationManager.swift in Sources */,
 				435A0B2E2397283F00EF5782 /* WeatherNetworking.swift in Sources */,
 				435A0B302397287B00EF5782 /* WeatherModel.swift in Sources */,
 				435A0B2C239727B000EF5782 /* CurrentWeatherViewModel.swift in Sources */,

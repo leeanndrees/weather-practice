@@ -20,14 +20,11 @@ final class WeatherNetworking {
                            longitude: Double,
                            success: @escaping (CurrentWeatherResponse) -> Void,
                            failure: @escaping (Error) -> Void) {
-//        dataTask?.cancel()
         
         let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&units=imperial&appid=\(key)"
         guard let url = URLComponents(string: urlString)?.url else { print("invalid URL"); return}
         
         dataTask = weatherSession.dataTask(with: url) { data, response, error in
-//            defer { self.dataTask = nil }
-            
             if let error = error {
                 failure(error)
             } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
